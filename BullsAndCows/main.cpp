@@ -5,8 +5,6 @@
 //  Created by Abraham Kim on 10/22/17.
 //  Copyright © 2017 Abraham Kim. All rights reserved.
 //
-#pragma once
-
 #include <iostream>
 #include <string>
 #include "FBullCowGame.h"
@@ -38,7 +36,6 @@ int main()
 
 void PrintIntro()
 {
-    // introduce the game
     std::cout << "Welcome to Bulls and Cows, an awkwardly fun game.\n";
     std::cout << "            }   {          ^__^           " << std::endl;
     std::cout << "            (o o)         (o  o)          " << std::endl;
@@ -54,13 +51,13 @@ void PrintIntro()
     return;
 }
 
-//Play a single game to completion
 void PlayGame()
 {
     BCGame.Reset();
     int MaxTries = BCGame.GetMaxTries();
     
-    while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries) {
+    while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries)
+    {
         std::string Guess = GetValidGuess();
         FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
         
@@ -84,7 +81,8 @@ std::string GetValidGuess()
         std::getline(std::cin, Guess);
         
         Status = BCGame.CheckGuessValidity(Guess);
-        switch (Status) {
+        switch (Status)
+        {
             case EGuessStatus::Wrong_Length:
                 std::cout << "please enter a " << BCGame.GetHiddenWordLength() << " letter word.\n\n";
                 break;
@@ -97,7 +95,9 @@ std::string GetValidGuess()
             default:
                 break;
         }
-    } while (Status != EGuessStatus::OK);
+    }
+    while (Status != EGuessStatus::OK);
+    
     return Guess; 
 }
 
@@ -106,6 +106,7 @@ bool AskToPlayAgain()
     std::cout << "Do you wish to continue with same hidden word (y/n)? ";
     FText Response = "";
     std::getline(std::cin, Response);
+    
     return (Response[0] == 'y') || (Response[0] == 'Y');
 }
 

@@ -2,6 +2,7 @@
 
 #include <string>
 
+// Unreal friendly syntax
 using FString = std::string;
 using int32 = int;
 
@@ -20,7 +21,8 @@ enum class EGuessStatus
     Wrong_Length,
 };
 
-class FBullCowGame {
+class FBullCowGame
+{
 public:
     FBullCowGame(); // constructor
     

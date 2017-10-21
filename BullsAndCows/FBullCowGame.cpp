@@ -7,12 +7,12 @@ using int32 = int;
 FBullCowGame::FBullCowGame() { Reset(); }
 
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
-int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
+int32 FBullCowGame::GetHiddenWordLength() const { return static_cast<unsigned>(MyHiddenWord.length()); }
 bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
 
 int32 FBullCowGame::GetMaxTries() const {
     TMap<int32, int32> WordLengthToMaxTries{ {3,4}, {4,7}, {5,10}, {6,16}, {7,20} };
-    return WordLengthToMaxTries[MyHiddenWord.length()];
+    return WordLengthToMaxTries[static_cast<unsigned>(MyHiddenWord.length())];
 }
 
 void FBullCowGame::Reset()
@@ -49,7 +49,7 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 {
     MyCurrentTry += 1;
     FBullCowCount BullCowCount;
-    int32 WordLength = MyHiddenWord.length();
+    int32 WordLength = static_cast<unsigned>(MyHiddenWord.length());
     
     for (int32 MHWChar = 0; MHWChar < WordLength; MHWChar += 1) {
         for (int32 GChar = 0; GChar < WordLength; GChar += 1) {
