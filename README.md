@@ -374,7 +374,9 @@ Take advantage of NRVO, when you are returning a local object. This means you ne
 ```
 ```
 <<<__restrict keyword
-2. Modern Language Features
+```
+### 2. Modern Language Features
+```
 override and final keywords are mandatory
 ```
 ```
@@ -418,8 +420,8 @@ const int DEFAULT_BUFER_SIZE = 65536
 <<<TBD: Lambda
 <<<TBD: do not use shared_ptr
 ```
+### 3. Project Settings and Project Structure
 ```
-3. Project Settings and Project Structure
 Visual C++: Always use property sheets to change project settings
 Do not disable compile warnings in project settings. Use #pragma in code instead.
 ```
