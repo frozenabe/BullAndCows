@@ -66,8 +66,8 @@ void PlayGame()
         std::cout << "Bulls = " << BullCowCount.Bulls;
         std::cout << "Cows = " << BullCowCount.Cows << "\n\n";
     }
-    
     PrintGameSummary();
+    
     return;
 }
 

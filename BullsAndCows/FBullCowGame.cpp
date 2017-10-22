@@ -13,20 +13,21 @@ int32 FBullCowGame::getCurrentTry() const
 {
     return mMyCurrentTry;
 }
+
 int32 FBullCowGame::getHiddenWordLength() const
 {
     return static_cast<unsigned>(mMyHiddenWord.length());
-    
 }
+
 bool FBullCowGame::isGameWon() const
 {
     return mbGameIsWon;
-    
 }
 
 int32 FBullCowGame::getMaxTries() const
 {
     TMap<int32, int32> WordLengthToMaxTries{ {3,4}, {4,7}, {5,10}, {6,16}, {7,20} };
+    
     return WordLengthToMaxTries[static_cast<unsigned>(mMyHiddenWord.length())];
 }
 
@@ -37,6 +38,7 @@ void FBullCowGame::Reset()
     
     mMyCurrentTry = 1;
     mbGameIsWon = false;
+    
     return;
 }
 
@@ -91,6 +93,7 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
     {
         mbGameIsWon = false;
     }
+    
     return BullCowCount;
 }
 
@@ -114,6 +117,7 @@ bool FBullCowGame::mIsIsogram(FString Word) const
             LetterSeen[Letter] = true;
         }
     }
+    
     return true;
 }
 
@@ -126,5 +130,6 @@ bool FBullCowGame::mIsLowercase(FString Word) const
             return false;
         }
     }
+    
     return true;
 }
