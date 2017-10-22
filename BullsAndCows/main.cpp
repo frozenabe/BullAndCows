@@ -7,6 +7,7 @@
 //
 #include <iostream>
 #include <string>
+
 #include "FBullCowGame.h"
 
 // Unreal friendly syntax
@@ -24,7 +25,8 @@ FBullCowGame BCGame;
 int main()
 {
     bool bPlayAgain = false;
-    do {
+    do
+    {
         PrintIntro();
         PlayGame();
         bPlayAgain = AskToPlayAgain();
@@ -37,14 +39,14 @@ int main()
 void PrintIntro()
 {
     std::cout << "Welcome to Bulls and Cows, an awkwardly fun game.\n";
-    std::cout << "            }   {          ^__^           " << std::endl;
-    std::cout << "            (o o)         (o  o)          " << std::endl;
-    std::cout << "   /--------\\ /           \\  /-------\\ " << std::endl;
-    std::cout << "  / |  BULL  |o    Abe Kim   oo| COW  |// " << std::endl;
-    std::cout << " *  |-,------|                 |------|*  " << std::endl;
-    std::cout << "    |        |                 |      |   " << std::endl;
-    std::cout << "    ^        ^                 ^      ^   " << std::endl;
-    std::cout << "Can you guess the " << BCGame.GetHiddenWordLength();
+    std::cout << "           }   {           ^__^           " << std::endl;
+    std::cout << "           (o o)          (o  o)          " << std::endl;
+    std::cout << "   /--------\\ /            \\  /-------\\" << std::endl;
+    std::cout << "  / |  BULL |o    Abe Kim   oo| COW  |//   " << std::endl;
+    std::cout << " *  |-,-----|                 |------|*   " << std::endl;
+    std::cout << "    |       |                 |      |    " << std::endl;
+    std::cout << "    ^       ^                 ^      ^    " << std::endl;
+    std::cout << "Can you guess the " << BCGame.getHiddenWordLength();
     std::cout << " letter isogram I am thinking of?\n";
     std::cout << std::endl;
 
@@ -54,9 +56,9 @@ void PrintIntro()
 void PlayGame()
 {
     BCGame.Reset();
-    int MaxTries = BCGame.GetMaxTries();
+    int MaxTries = BCGame.getMaxTries();
     
-    while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries)
+    while (!BCGame.isGameWon() && BCGame.getCurrentTry() <= MaxTries)
     {
         std::string Guess = GetValidGuess();
         FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
@@ -73,30 +75,31 @@ void PlayGame()
 std::string GetValidGuess()
 {
     FText Guess = "";
-    EGuessStatus Status = EGuessStatus::Invalid_Status;
-    do {
-        int32 CurrentTry = BCGame.GetCurrentTry();
-        std::cout << "Try " << CurrentTry << " of" << BCGame.GetMaxTries();
+    eGuessStatus Status = eGuessStatus::InvalidStatus;
+    do
+    {
+        int32 CurrentTry = BCGame.getCurrentTry();
+        std::cout << "Try " << CurrentTry << " of" << BCGame.getMaxTries();
         std::cout << ". Enter your guess: ";
         std::getline(std::cin, Guess);
         
         Status = BCGame.CheckGuessValidity(Guess);
         switch (Status)
         {
-            case EGuessStatus::Wrong_Length:
-                std::cout << "please enter a " << BCGame.GetHiddenWordLength() << " letter word.\n\n";
+            case eGuessStatus::WrongLength:
+                std::cout << "please enter a " << BCGame.getHiddenWordLength() << " letter word.\n\n";
                 break;
-            case EGuessStatus::Not_Isogram:
+            case eGuessStatus::NotIsogram:
                 std::cout << "Please enter a word without repeating letters.\n\n";
                 break;
-            case EGuessStatus::Not_Lowercase:
+            case eGuessStatus::NotLowercase:
                 std::cout << "Please enter all lowercase letters.\n\n";
                 break;
             default:
                 break;
         }
     }
-    while (Status != EGuessStatus::OK);
+    while (Status != eGuessStatus::OK);
     
     return Guess; 
 }
@@ -112,5 +115,5 @@ bool AskToPlayAgain()
 
 void PrintGameSummary()
 {
-    (BCGame.IsGameWon()) ? std::cout << "You won!\n" : std::cout << "Try again\n";
+    (BCGame.isGameWon()) ? std::cout << "You won!\n" : std::cout << "Try again\n";
 }
