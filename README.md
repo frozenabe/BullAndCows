@@ -2,6 +2,7 @@
 
 Simple Isogram Puzzle using C++
 
+Credit: 포프TV
 # Studying C++ Standard
 ## Rule of Thumb
 ```
